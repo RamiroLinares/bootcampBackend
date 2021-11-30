@@ -17,13 +17,15 @@ describe('Serializing and Deserializing BigInt tests', function () {
         expect(assert.equal(serialize(val), resVal));
     })
     it('Deserialize 1 value', () => {
-        expect(assert.equal(deserialize(resVal).toString(), val.toString()));
+        //expect(deepEqual(deserialize(resVal).toString(), val.toString()));
+        expect(deserialize(resVal)).to.deep.equal(val);
     })  
     it('Serialize Object', () => {
         expect(assert.equal(serialize(valJson), resValJson));
     })
     it('Deserialize Object', () => {
-        expect(assert.equal(deserialize(resValJson).toString(), valJson.toString())); //in ValJson
+        expect(deserialize(resValJson)).to.deep.equal(valJson);
+        //expect(assert.equal(deserialize(resValJson).toString(), valJson.toString())); //in ValJson
         //mocha converts 987n to to 987
         //issue in https://github.com/mochajs/mocha/issues/4090
     })
@@ -31,7 +33,8 @@ describe('Serializing and Deserializing BigInt tests', function () {
         expect(assert.equal(serialize(valObjectNested), resvalObjectNested));
     })
     it('Deserialize Nested Object', () => {
-        expect(assert.equal(deserialize(resvalObjectNested).toString(), valObjectNested.toString())); //in ValJson
+        expect(deserialize(resvalObjectNested)).to.deep.equal(valObjectNested);
+        //expect(assert.equal(deserialize(resvalObjectNested).toString(), valObjectNested.toString())); //in ValJson
     })
     
 })
