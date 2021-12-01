@@ -18,5 +18,4 @@ export default class SanPedro extends HealthSystems {
         return this.doctors;
     }
 
- }
- 
+}

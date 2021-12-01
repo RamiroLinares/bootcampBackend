@@ -5,11 +5,7 @@ export class HealthSystems {
     }
 
     getAvailableDoctors() {
-/*         return this.doctors.map(function (doc) {
-            if(doc.turn==true){
-            return doc.name}
-        }); */
-        const filterDocs=this.doctors.filter(doc => doc.turn==true)
+        const filterDocs = this.doctors.filter(doc => doc.turn == true)
         return filterDocs.map(function (doc) {
             return doc.name
         });
