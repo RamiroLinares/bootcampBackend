@@ -7,27 +7,27 @@ export class Square {
 
     constructor(x: Number, y: Number, piece: Piece) {
     }
-    getPiece():Piece {
+    getPiece(): Piece {
         return this.piece;
     }
 
-    setPiece(p:Piece) {
+    setPiece(p: Piece) {
         this.piece = p;
     }
 
-    getX():Number {
+    getX(): Number {
         return this.x;
     }
 
-    setX(x:Number) {
+    setX(x: Number) {
         this.x = x;
     }
 
-    getY():Number {
+    getY(): Number {
         return this.y;
     }
 
-    setY(y:Number) {
+    setY(y: Number) {
         this.y = y;
     }
 }
