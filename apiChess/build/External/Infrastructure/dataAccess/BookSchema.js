@@ -11,4 +11,4 @@ exports.BookSchema = new mongoose_1.Schema({
     year: { type: Number, default: 2021 }
 });
 //export default Mongoose.model('Book',bookSchema)
-//# sourceMappingURL=Book.js.map
+//# sourceMappingURL=BookSchema.js.map

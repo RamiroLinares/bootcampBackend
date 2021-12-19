@@ -12,6 +12,7 @@ async function run(BookModel) {
         year: 2021
     });
     await doc.save();
+    console.log(doc);
     return doc.author;
 }
 exports.run = run;

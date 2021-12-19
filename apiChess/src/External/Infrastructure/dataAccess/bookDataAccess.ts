@@ -1,5 +1,5 @@
-import { BookSchema } from '../../../Core/models/Book';
 import { Schema, model, connect } from 'mongoose';
+import { BookSchema } from './BookSchema';
 
 
 export async function run(BookModel:any): Promise<void> {
@@ -13,6 +13,6 @@ export async function run(BookModel:any): Promise<void> {
     year:2021
   });
   await doc.save();
-
+  console.log(doc);
   return doc.author; 
 }

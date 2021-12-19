@@ -1,6 +1,5 @@
 //import Mongoose from "mongoose";
 import { Schema } from "mongoose";
-import Book from '../../../../singleResponsability/src/book';
 //const Schema= Mongoose.Schema;
 
 export const BookSchema= new Schema<any>({

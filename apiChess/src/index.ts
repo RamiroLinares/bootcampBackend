@@ -1,6 +1,6 @@
 import express from 'express';
 import { Schema, model, connect } from 'mongoose';
-import { BookSchema } from './Core/models/Book';
+import { BookSchema } from './External/Infrastructure/dataAccess/BookSchema';
 import {run} from './External/Infrastructure/dataAccess/bookDataAccess'
 const app= express()
 const port=3000;
