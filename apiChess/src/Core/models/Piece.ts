@@ -6,7 +6,7 @@ export abstract class Piece {
     protected killed: boolean = false;
     protected white: boolean = false;
 
-    Piece(white: boolean) {
+    constructor(white:boolean) {
         this.setWhite(white);
     }
 
