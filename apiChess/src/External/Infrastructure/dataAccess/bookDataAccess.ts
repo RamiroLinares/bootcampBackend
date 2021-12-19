@@ -1,36 +1,18 @@
-/* import { BookSchema } from '../../../Core/models/Book';
+import { BookSchema } from '../../../Core/models/Book';
+import { Schema, model, connect } from 'mongoose';
 
 
-export async function save(bookToInsert){
-    try {
-        const bookModel= new BookSchema(bookToInsert);
-        return await bookModel.save();
-    } catch (error) {
-        console.error(error);
-    }
+export async function run(BookModel:any): Promise<void> {
+  // 4. Connect to MongoDB
+  await connect('mongodb://localhost:27017/books');
+
+  const doc = new BookModel({
+    author:'adsa',
+    title:'elPEpe',
+    //date: Date.now,
+    year:2021
+  });
+  await doc.save();
+
+  return doc.author; 
 }
-
-export async function read(id){
-    try {
-        return await BookSchema.findById(id).lean();
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-export async function update(id, bookToUpdate){
-    try {
-        return await BookSchema.findByIdAndUpdate(id, bookToUpdate).lean();
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-export async function remove(id, bookToUpdate){
-    try {
-        return await BookSchema.findByIdAndDelete(id).lean()
-    } catch (error) {
-        console.error(error);
-    }
-}
- */

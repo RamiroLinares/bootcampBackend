@@ -1,8 +1,9 @@
-import Mongoose from "mongoose";
+//import Mongoose from "mongoose";
+import { Schema } from "mongoose";
+import Book from '../../../../singleResponsability/src/book';
+//const Schema= Mongoose.Schema;
 
-const Schema= Mongoose.Schema;
-
-export const BookSchema= new Schema({
+export const BookSchema= new Schema<any>({
     author:{type: String},
     title: {type: String, default: 'No title'},
     date: {type: Date, default: Date.now},
