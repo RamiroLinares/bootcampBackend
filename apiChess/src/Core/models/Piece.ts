@@ -41,6 +41,13 @@ export abstract class Piece implements IPiece{
             return false;}
     };
     movePiece(start: ISquare, end: ISquare):boolean{
+        if(end.getPiece()!=null){
+            end.getPiece()?.setKilled(true);
+            if(end.getPiece().constructor.name==='King'){
+                console.log("CHECK MATE! END OF MATCH");
+                process.exit(1);
+            }
+        }
         end.setPiece(start.getPiece());
         start.setPiece(null);
         return true;

@@ -35,6 +35,14 @@ class Piece {
     }
     ;
     movePiece(start, end) {
+        var _a;
+        if (end.getPiece() != null) {
+            (_a = end.getPiece()) === null || _a === void 0 ? void 0 : _a.setKilled(true);
+            if (end.getPiece().constructor.name === 'King') {
+                console.log("CHECK MATE! END OF MATCH");
+                process.exit(1);
+            }
+        }
         end.setPiece(start.getPiece());
         start.setPiece(null);
         return true;
