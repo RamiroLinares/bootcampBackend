@@ -23,7 +23,7 @@ class Pawn extends Piece_1.Piece {
             return true;
         }
         else if ((end.getPiece() !== null) && (xStartToEnd !== noAxisMovement) && (yStartToEnd !== noAxisMovement) &&
-            ((Math.abs(xStartToEnd) + Math.abs(yStartToEnd)) === 2)) {
+            ((Math.abs(xStartToEnd) + Math.abs(yStartToEnd)) === 2 * amountMovement)) {
             return true;
         }
         else {

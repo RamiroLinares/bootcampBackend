@@ -6,17 +6,26 @@ export class Rook extends Piece {
     constructor(white: boolean) {
         super(white);
     }
+    isRookNotCollisioning(board: IBoard, start: ISquare, end: ISquare): boolean {
+        let colission = true;
+        for (let i = start.getX(); i <= end.getX(); i++) {
+            for (let j = start.getY(); j <= end.getY(); j++) {
+                if (board.squares[i][j].getPiece() !== null) {
+                    colission = false;
+                } else if (end.getPiece()?.isWhite() === !this.white) {
+                    colission = true;
+                }
+            }
+        }
+        return colission;
+    }
 
-    isValidMoveForThisPiece(board:IBoard,start: ISquare, end: ISquare) {
+    isValidMoveForThisPiece(board: IBoard, start: ISquare, end: ISquare) {
         let xStartToEnd = Math.abs(start.getX() - end.getX());
         let yStartToEnd = Math.abs(start.getY() - end.getY());
+
         if ((xStartToEnd == 0 && yStartToEnd != 0) || (xStartToEnd != 0 && yStartToEnd == 0)) {
-/*             for(let i:number=start.getX(); i<end.getX(); i++){
-                for(let j:number=start.getY(); j<end.getY(); j++){
-                    if(board[i][j]){}
-                }
-            } */
-            return true;
+            return this.isRookNotCollisioning(board, start, end);
         } else {
             return false;
         }
