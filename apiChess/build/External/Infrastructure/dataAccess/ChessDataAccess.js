@@ -29,7 +29,9 @@ async function loadMatch(ChessModel, chessBoard) {
         console.log(products)
     }))
       disconnect(); */
-    return await (ChessModel.find().sort({ _id: -1 }).limit(1));
+    const doc = await (ChessModel.find().sort({ _id: -1 }).limit(1));
+    const doc2 = doc[0].chessBoard;
+    return doc2;
 }
 exports.loadMatch = loadMatch;
 //# sourceMappingURL=ChessDataAccess.js.map

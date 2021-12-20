@@ -10,8 +10,8 @@ class Queen extends Piece_1.Piece {
         if ((xStartToEnd == 0 && yStartToEnd != 0) || (xStartToEnd != 0 && yStartToEnd == 0)) {
             return true; //rook movement
         }
-        else if (!((xStartToEnd == 0 && yStartToEnd != 0) || (xStartToEnd != 0 && yStartToEnd == 0))) {
-            return true; //bishop movement
+        else if (xStartToEnd === yStartToEnd) { //bishop movement
+            return true;
         }
         else {
             return false;

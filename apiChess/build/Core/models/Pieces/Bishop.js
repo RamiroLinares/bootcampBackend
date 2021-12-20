@@ -6,9 +6,6 @@ class Bishop extends Piece_1.Piece {
     constructor(white) {
         super(white);
     }
-    isInt(n) {
-        return Number(n) === n && n % 1 === 0;
-    }
     isValidMoveForThisPiece(xStartToEnd, yStartToEnd) {
         if (xStartToEnd === yStartToEnd) {
             return true;

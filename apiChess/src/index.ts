@@ -3,15 +3,18 @@ import { model } from 'mongoose';
 import { ChessSchemaHistory, ChessSchemaBoard } from './External/Infrastructure/dataAccess/ChessSchema';
 import { saveMatch, saveMovement, loadMatch } from './External/Infrastructure/dataAccess/ChessDataAccess'
 import { Board } from './Core/models/Board';
+import { Square } from './Core/models/Square';
+import { Player } from './Core/models/Player';
 
 const app = express()
 const port = 3000;
 let board = new Board()
+let player= new Player();
 function isLetter(letter: string) {
     return (letter.toUpperCase() != letter.toLowerCase());
 }
 app.get('/', async (req, res) => {
-    res.send("/initGame for initialize, /game/:movement for move piece")
+    res.send("/initGame for initialize, /game/:movement for move piece, /saveMatch to save, /loadMatch to load")
 })
 app.get('/initGame', (req, res) => {
     board.resetBoard();
@@ -25,9 +28,12 @@ app.get('/saveMatch', async (req, res) => {
 
 app.get('/loadMatch', async (req, res) => {
     const ChessModel = model<any>('ChessBoard', ChessSchemaBoard);
-    console.log(board);
-    board=await loadMatch(ChessModel, board)//.catch(err => console.log(err));
-    console.log(board);
+    console.log(board.squares);
+    const boardAux=await loadMatch(ChessModel, board)//.catch(err => console.log(err));
+    console.log(boardAux);
+    /* console.log(boardAux[0].chessBoard); */
+    board.squares=boardAux as Array<Array<Square>>;
+    console.log(board.squares);
     res.send("last match loaded")
 });
 
@@ -51,8 +57,10 @@ app.get('/game/:movement', async (req, res) => {
     const initBoardSquare = board.squares[posInitialNumber][posInitialLetter];
     const endBoardSquare = board.squares[posEndNumber][posEndLetter];
 
+    if(initBoardSquare.getPiece()?.isWhite()===player.isWhiteTurn()){
     if (initBoardSquare.getPiece()?.canMove(initBoardSquare, endBoardSquare)) {
         res.send("movement is " + req.params.movement + " is valid");
+        player.togglePlayer();
 
         const ChessModel = model<any>('Chess', ChessSchemaHistory);
         await saveMovement(ChessModel, movement).catch(err => console.log(err));
@@ -60,6 +68,9 @@ app.get('/game/:movement', async (req, res) => {
     } else {
         res.send("movement is " + req.params.movement + " is NOT valid");
     }
+}else{
+    res.send("movement " + req.params.movement + " is NOT the correct color piece turn");
+}
 });
 app.listen(port, () => {
     console.log(`Server is listening on ${port}`)
