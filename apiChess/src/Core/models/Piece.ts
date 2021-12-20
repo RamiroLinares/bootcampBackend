@@ -35,7 +35,7 @@ export abstract class Piece implements IPiece{
         let xStartToEnd = Math.abs(start.getX() - end.getX());
         let yStartToEnd = Math.abs(start.getY() - end.getY());
 
-        if(this.isValidMoveForThisPiece(board, xStartToEnd,yStartToEnd)){
+        if(this.isValidMoveForThisPiece(board, start, end)){
             return this.movePiece(board,start,end);
         }else{
             return false;}
@@ -52,5 +52,5 @@ export abstract class Piece implements IPiece{
         start.setPiece(null);
         return true;
     }
-    abstract isValidMoveForThisPiece(board:IBoard,xStartToEnd:number,yStartToEnd:number):boolean;
+    abstract isValidMoveForThisPiece(board:IBoard,start: ISquare, end: ISquare):boolean;
 }

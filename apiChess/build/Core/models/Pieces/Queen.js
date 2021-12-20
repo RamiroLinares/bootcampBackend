@@ -6,7 +6,9 @@ class Queen extends Piece_1.Piece {
     constructor(white) {
         super(white);
     }
-    isValidMoveForThisPiece(board, xStartToEnd, yStartToEnd) {
+    isValidMoveForThisPiece(board, start, end) {
+        let xStartToEnd = Math.abs(start.getX() - end.getX());
+        let yStartToEnd = Math.abs(start.getY() - end.getY());
         if ((xStartToEnd == 0 && yStartToEnd != 0) || (xStartToEnd != 0 && yStartToEnd == 0)) {
             return true; //rook movement
         }

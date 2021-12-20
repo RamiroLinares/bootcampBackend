@@ -6,7 +6,9 @@ class Pawn extends Piece_1.Piece {
     constructor(white) {
         super(white);
     }
-    isValidMoveForThisPiece(board, xStartToEnd, yStartToEnd) {
+    isValidMoveForThisPiece(board, start, end) {
+        let xStartToEnd = Math.abs(start.getX() - end.getX());
+        let yStartToEnd = Math.abs(start.getY() - end.getY());
         if (xStartToEnd + yStartToEnd == 1) {
             return true;
         }

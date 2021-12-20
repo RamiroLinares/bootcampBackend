@@ -26,7 +26,7 @@ class Piece {
         }
         let xStartToEnd = Math.abs(start.getX() - end.getX());
         let yStartToEnd = Math.abs(start.getY() - end.getY());
-        if (this.isValidMoveForThisPiece(board, xStartToEnd, yStartToEnd)) {
+        if (this.isValidMoveForThisPiece(board, start, end)) {
             return this.movePiece(board, start, end);
         }
         else {
