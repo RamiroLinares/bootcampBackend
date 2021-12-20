@@ -1,4 +1,4 @@
-import { Square } from "./Square";
+import { ISquare } from "./ISquare";
 export declare abstract class Piece {
     protected killed: boolean;
     protected white: boolean;
@@ -7,7 +7,7 @@ export declare abstract class Piece {
     setWhite(white: boolean): void;
     isKilled(): boolean;
     setKilled(killed: boolean): void;
-    canMove(start: Square, end: Square): boolean;
-    movePiece(start: Square, end: Square): boolean;
+    canMove(start: ISquare, end: ISquare): boolean;
+    movePiece(start: ISquare, end: ISquare): boolean;
     abstract isValidMoveForThisPiece(xStartToEnd: number, yStartToEnd: number): boolean;
 }

@@ -1,7 +1,7 @@
-import { Square } from './Square';
+import { ISquare } from './ISquare';
 export declare class Board {
-    squares: Square[][];
+    squares: ISquare[][];
     constructor();
-    getBox(x: number, y: number): Square;
+    getBox(x: number, y: number): ISquare;
     resetBoard(): void;
 }

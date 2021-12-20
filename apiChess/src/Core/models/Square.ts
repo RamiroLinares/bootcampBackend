@@ -1,6 +1,7 @@
 import { Piece } from "./Piece";
+import { ISquare } from './ISquare';
 
-export class Square {
+export class Square implements ISquare {
     private piece: Piece;
     private x: number;
     private y: number;

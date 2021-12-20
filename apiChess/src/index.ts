@@ -1,12 +1,12 @@
 import express from 'express';
 import { model } from 'mongoose';
-import { ChessSchema } from './External/Infrastructure/dataAccess/ChessSchema';
-import { saveMovement } from './External/Infrastructure/dataAccess/bookDataAccess'
+import { ChessSchemaHistory, ChessSchemaBoard } from './External/Infrastructure/dataAccess/ChessSchema';
+import { saveMatch, saveMovement, loadMatch } from './External/Infrastructure/dataAccess/ChessDataAccess'
 import { Board } from './Core/models/Board';
 
 const app = express()
 const port = 3000;
-const board = new Board()
+let board = new Board()
 function isLetter(letter: string) {
     return (letter.toUpperCase() != letter.toLowerCase());
 }
@@ -17,6 +17,20 @@ app.get('/initGame', (req, res) => {
     board.resetBoard();
     res.send("board reseted")
 })
+app.get('/saveMatch', async (req, res) => {
+    const ChessModel = model<any>('ChessBoard', ChessSchemaBoard);
+    await saveMatch(ChessModel, board).catch(err => console.log(err));
+    res.send("match saved")
+});
+
+app.get('/loadMatch', async (req, res) => {
+    const ChessModel = model<any>('ChessBoard', ChessSchemaBoard);
+    console.log(board);
+    board=await loadMatch(ChessModel, board)//.catch(err => console.log(err));
+    console.log(board);
+    res.send("last match loaded")
+});
+
 app.get('/game/:movement', async (req, res) => {
 
     const movement = req.params.movement;
@@ -39,8 +53,10 @@ app.get('/game/:movement', async (req, res) => {
 
     if (initBoardSquare.getPiece()?.canMove(initBoardSquare, endBoardSquare)) {
         res.send("movement is " + req.params.movement + " is valid");
-        const ChessModel = model<any>('Chess', ChessSchema);
+
+        const ChessModel = model<any>('Chess', ChessSchemaHistory);
         await saveMovement(ChessModel, movement).catch(err => console.log(err));
+
     } else {
         res.send("movement is " + req.params.movement + " is NOT valid");
     }

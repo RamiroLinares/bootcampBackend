@@ -5,9 +5,10 @@ import { Bishop } from './Pieces/Bishop';
 import { Rook } from './Pieces/Rook';
 import { Knight } from './Pieces/Knight';
 import { Pawn } from './Pieces/Pawn';
+import { ISquare } from './ISquare';
 
 export class Board {
-    squares: Square[][];
+    squares: ISquare[][];
     
     constructor() {
         this.squares=[]

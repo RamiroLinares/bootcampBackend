@@ -1,5 +1,5 @@
-import { Board } from "./Board";
-import { Square } from "./Square";
+import { ISquare } from "./ISquare";
+
 
 export abstract class Piece {
 
@@ -26,7 +26,7 @@ export abstract class Piece {
         this.killed = killed;
     }
 
-    canMove(start: Square, end: Square) {
+    canMove(start: ISquare, end: ISquare) {
 
         if (this.isWhite()== end.getPiece()?.isWhite()) {
             return false;
@@ -39,7 +39,7 @@ export abstract class Piece {
         }else{
             return false;}
     };
-    movePiece(start: Square, end: Square){
+    movePiece(start: ISquare, end: ISquare){
         end.setPiece(start.getPiece());
         start.setPiece(null);
         return true;
