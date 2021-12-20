@@ -6,6 +6,12 @@ export class Queen extends Piece {
     }
 
     isValidMoveForThisPiece(xStartToEnd: number, yStartToEnd: number) {
-        return true;
+        if ((xStartToEnd == 0 && yStartToEnd != 0) || (xStartToEnd != 0 && yStartToEnd == 0)) {
+            return true; //rook movement
+        } else if (xStartToEnd===yStartToEnd){ //bishop movement
+            return true;
+        }else{
+            return false;
+        }
     }
 }

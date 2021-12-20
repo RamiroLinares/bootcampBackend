@@ -7,7 +7,15 @@ class Queen extends Piece_1.Piece {
         super(white);
     }
     isValidMoveForThisPiece(xStartToEnd, yStartToEnd) {
-        return true;
+        if ((xStartToEnd == 0 && yStartToEnd != 0) || (xStartToEnd != 0 && yStartToEnd == 0)) {
+            return true; //rook movement
+        }
+        else if (!((xStartToEnd == 0 && yStartToEnd != 0) || (xStartToEnd != 0 && yStartToEnd == 0))) {
+            return true; //bishop movement
+        }
+        else {
+            return false;
+        }
     }
 }
 exports.Queen = Queen;

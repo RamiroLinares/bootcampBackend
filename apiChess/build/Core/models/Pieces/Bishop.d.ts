@@ -1,6 +1,6 @@
 import { Piece } from "../Piece";
-import { IPiece } from '../IPiece';
-export declare class Bishop extends Piece implements IPiece {
+export declare class Bishop extends Piece {
     constructor(white: boolean);
+    isInt(n: any): boolean;
     isValidMoveForThisPiece(xStartToEnd: number, yStartToEnd: number): boolean;
 }
