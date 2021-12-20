@@ -6,6 +6,9 @@ export class Square {
     private y: number;
 
     constructor(x: number, y: number, piece: Piece) {
+        this.x=x;
+        this.y=y;
+        this.piece=piece;
     }
     getPiece(): Piece {
         return this.piece;

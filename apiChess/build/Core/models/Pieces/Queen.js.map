@@ -1,0 +1,1 @@
+{"version":3,"file":"Queen.js","sourceRoot":"","sources":["../../../../src/Core/models/Pieces/Queen.ts"],"names":[],"mappings":";;;AAAA,oCAAiC;AAEjC,MAAa,KAAM,SAAQ,aAAK;IAC5B,YAAY,KAAc;QACtB,KAAK,CAAC,KAAK,CAAC,CAAC;IACjB,CAAC;IAED,uBAAuB,CAAC,WAAmB,EAAE,WAAmB;QAC5D,OAAO,IAAI,CAAC;IAChB,CAAC;CACJ;AARD,sBAQC"}

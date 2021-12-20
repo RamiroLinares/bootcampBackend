@@ -6,7 +6,7 @@ export class Bishop extends Piece {
     }
 
     isValidMoveForThisPiece(xStartToEnd: number, yStartToEnd: number) {
-        if ((xStartToEnd==0 && yStartToEnd!=0)||(xStartToEnd!=0 && yStartToEnd==0)) {
+        if ((xStartToEnd == 0 && yStartToEnd != 0) || (xStartToEnd != 0 && yStartToEnd == 0)) {
             return false;
         } else {
             return true;

@@ -6,12 +6,12 @@ async function run(BookModel) {
     // 4. Connect to MongoDB
     await (0, mongoose_1.connect)('mongodb://localhost:27017/books');
     const doc = new BookModel({
-        author: 'adsa',
-        title: 'elPEpe',
+        author: 'un autor',
+        title: 'Un titulo',
         //date: Date.now,
         year: 2021
     });
-    await doc.save();
+    //await doc.save();
     console.log(doc);
     return doc.author;
 }

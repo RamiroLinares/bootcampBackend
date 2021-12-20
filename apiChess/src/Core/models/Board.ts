@@ -8,14 +8,18 @@ import { Pawn } from './Pieces/Pawn';
 
 export class Board {
     squares: Square[][];
-
+    
     constructor() {
-        this.resetBoard();
+        this.squares=[]
+        
+        for(var i: number = 0; i <= 7; i++) {
+            this.squares[i] = [];}
+            this.resetBoard();
     }
 
     getBox(x: number, y: number) {
         if (x < 0 || x > 7 || y < 0 || y > 7) {
-            throw new console.error("out of Board");
+            throw console.error("out of Board");
         }
         return this.squares[x][y];
     }
@@ -52,6 +56,6 @@ export class Board {
             for (let j = 0; j < 8; j++) {
                 this.squares[i][j] = new Square(i, j, null);
             }
-        }
+        } 
     }
 }
