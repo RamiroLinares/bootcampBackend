@@ -30,11 +30,12 @@ export abstract class Piece {
         if (end.getPiece().isWhite() == this.isWhite()) {
             return false;
         }
-        let x = Math.abs(start.getX() - end.getX());
-        let y = Math.abs(start.getY() - end.getY());
+        let xStartToEnd = Math.abs(start.getX() - end.getX());
+        let yStartToEnd = Math.abs(start.getY() - end.getY());
 
-        return this.isValidMoveForThisPiece(x,y);
+        return this.isValidMoveForThisPiece(xStartToEnd,yStartToEnd);
     };
-    isValidMoveForThisPiece(x:number,y:number){
+    
+    isValidMoveForThisPiece(xStartToEnd:number,yStartToEnd:number){
     }
 }
