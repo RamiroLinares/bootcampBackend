@@ -6,7 +6,7 @@ class Bishop extends Piece_1.Piece {
     constructor(white) {
         super(white);
     }
-    isValidMoveForThisPiece(xStartToEnd, yStartToEnd) {
+    isValidMoveForThisPiece(board, xStartToEnd, yStartToEnd) {
         if (xStartToEnd === yStartToEnd) {
             return true;
         }

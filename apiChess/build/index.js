@@ -57,7 +57,7 @@ app.get('/game/:movement', async (req, res) => {
     const initBoardSquare = board.squares[posInitialNumber][posInitialLetter];
     const endBoardSquare = board.squares[posEndNumber][posEndLetter];
     if (((_a = initBoardSquare.getPiece()) === null || _a === void 0 ? void 0 : _a.isWhite()) === player.isWhiteTurn()) {
-        if ((_b = initBoardSquare.getPiece()) === null || _b === void 0 ? void 0 : _b.canMove(initBoardSquare, endBoardSquare)) {
+        if ((_b = initBoardSquare.getPiece()) === null || _b === void 0 ? void 0 : _b.canMove(board, initBoardSquare, endBoardSquare)) {
             res.send("movement is " + req.params.movement + " is valid");
             player.togglePlayer();
             const ChessModel = (0, mongoose_1.model)('Chess', ChessSchema_1.ChessSchemaHistory);

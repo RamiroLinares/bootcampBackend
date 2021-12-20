@@ -1,6 +1,6 @@
 import { ISquare } from "./ISquare";
 import { IPiece } from './IPiece';
-
+import { IBoard } from "./IBoard";
 
 export abstract class Piece implements IPiece{
 
@@ -27,7 +27,7 @@ export abstract class Piece implements IPiece{
         this.killed = killed;
     }
 
-    canMove(start: ISquare, end: ISquare):boolean {
+    canMove(board:IBoard, start: ISquare, end: ISquare):boolean {
 
         if (this.isWhite()== end.getPiece()?.isWhite()) {
             return false;
@@ -35,12 +35,12 @@ export abstract class Piece implements IPiece{
         let xStartToEnd = Math.abs(start.getX() - end.getX());
         let yStartToEnd = Math.abs(start.getY() - end.getY());
 
-        if(this.isValidMoveForThisPiece(xStartToEnd,yStartToEnd)){
-            return this.movePiece(start,end);
+        if(this.isValidMoveForThisPiece(board, xStartToEnd,yStartToEnd)){
+            return this.movePiece(board,start,end);
         }else{
             return false;}
     };
-    movePiece(start: ISquare, end: ISquare):boolean{
+    movePiece(board:IBoard, start: ISquare, end: ISquare):boolean{
         if(end.getPiece()!=null){
             end.getPiece()?.setKilled(true);
             if(end.getPiece().constructor.name==='King'){
@@ -52,5 +52,5 @@ export abstract class Piece implements IPiece{
         start.setPiece(null);
         return true;
     }
-    abstract isValidMoveForThisPiece(xStartToEnd:number,yStartToEnd:number):boolean;
+    abstract isValidMoveForThisPiece(board:IBoard,xStartToEnd:number,yStartToEnd:number):boolean;
 }

@@ -58,7 +58,7 @@ app.get('/game/:movement', async (req, res) => {
     const endBoardSquare = board.squares[posEndNumber][posEndLetter];
 
     if(initBoardSquare.getPiece()?.isWhite()===player.isWhiteTurn()){
-    if (initBoardSquare.getPiece()?.canMove(initBoardSquare, endBoardSquare)) {
+    if (initBoardSquare.getPiece()?.canMove(board,initBoardSquare, endBoardSquare)) {
         res.send("movement is " + req.params.movement + " is valid");
         player.togglePlayer();
 

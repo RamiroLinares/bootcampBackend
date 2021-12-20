@@ -1,5 +1,6 @@
 import { Piece } from "../Piece";
+import { IBoard } from "../IBoard";
 export declare class Pawn extends Piece {
     constructor(white: boolean);
-    isValidMoveForThisPiece(xStartToEnd: number, yStartToEnd: number): boolean;
+    isValidMoveForThisPiece(board: IBoard, xStartToEnd: number, yStartToEnd: number): boolean;
 }

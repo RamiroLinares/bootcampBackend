@@ -19,22 +19,22 @@ class Piece {
     setKilled(killed) {
         this.killed = killed;
     }
-    canMove(start, end) {
+    canMove(board, start, end) {
         var _a;
         if (this.isWhite() == ((_a = end.getPiece()) === null || _a === void 0 ? void 0 : _a.isWhite())) {
             return false;
         }
         let xStartToEnd = Math.abs(start.getX() - end.getX());
         let yStartToEnd = Math.abs(start.getY() - end.getY());
-        if (this.isValidMoveForThisPiece(xStartToEnd, yStartToEnd)) {
-            return this.movePiece(start, end);
+        if (this.isValidMoveForThisPiece(board, xStartToEnd, yStartToEnd)) {
+            return this.movePiece(board, start, end);
         }
         else {
             return false;
         }
     }
     ;
-    movePiece(start, end) {
+    movePiece(board, start, end) {
         var _a;
         if (end.getPiece() != null) {
             (_a = end.getPiece()) === null || _a === void 0 ? void 0 : _a.setKilled(true);

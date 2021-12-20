@@ -1,5 +1,6 @@
 import { ISquare } from "./ISquare";
 import { IPiece } from './IPiece';
+import { IBoard } from "./IBoard";
 export declare abstract class Piece implements IPiece {
     protected killed: boolean;
     protected white: boolean;
@@ -8,7 +9,7 @@ export declare abstract class Piece implements IPiece {
     setWhite(white: boolean): void;
     isKilled(): boolean;
     setKilled(killed: boolean): void;
-    canMove(start: ISquare, end: ISquare): boolean;
-    movePiece(start: ISquare, end: ISquare): boolean;
-    abstract isValidMoveForThisPiece(xStartToEnd: number, yStartToEnd: number): boolean;
+    canMove(board: IBoard, start: ISquare, end: ISquare): boolean;
+    movePiece(board: IBoard, start: ISquare, end: ISquare): boolean;
+    abstract isValidMoveForThisPiece(board: IBoard, xStartToEnd: number, yStartToEnd: number): boolean;
 }
