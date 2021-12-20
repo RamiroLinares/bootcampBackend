@@ -1,1 +1,1 @@
-export declare function run(BookModel: any): Promise<void>;
+export declare function saveMovement(ChessModel: any, chessHistory: string): Promise<void>;

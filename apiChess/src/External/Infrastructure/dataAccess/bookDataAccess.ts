@@ -1,18 +1,14 @@
-import { Schema, model, connect } from 'mongoose';
-import { BookSchema } from './BookSchema';
+import { connect, disconnect } from 'mongoose';
 
 
-export async function run(BookModel:any): Promise<void> {
-  // 4. Connect to MongoDB
-  await connect('mongodb://localhost:27017/books');
+export async function saveMovement(ChessModel: any, chessHistory: string): Promise<void> {
+  await connect('mongodb://localhost:27017/chess');
 
-  const doc = new BookModel({
-    author:'un autor',
-    title:'Un titulo',
-    //date: Date.now,
-    year:2021
+  const doc = new ChessModel({
+    chessHistory: chessHistory
   });
-  //await doc.save();
+  await doc.save();
   console.log(doc);
-  return doc.author; 
+  disconnect();
+  return doc.chessHistory;
 }
