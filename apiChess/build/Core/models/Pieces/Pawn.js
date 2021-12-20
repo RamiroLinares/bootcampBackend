@@ -5,11 +5,25 @@ const Piece_1 = require("../Piece");
 class Pawn extends Piece_1.Piece {
     constructor(white) {
         super(white);
+        this.firstMovement = true;
     }
     isValidMoveForThisPiece(board, start, end) {
-        let xStartToEnd = Math.abs(start.getX() - end.getX());
-        let yStartToEnd = Math.abs(start.getY() - end.getY());
-        if (xStartToEnd + yStartToEnd == 1) {
+        let xStartToEnd = (start.getX() - end.getX());
+        let yStartToEnd = (start.getY() - end.getY());
+        const amountMovement = 1;
+        const noAxisMovement = 0;
+        if ((this.isWhite()) && (xStartToEnd === (-amountMovement - Number(this.firstMovement))) &&
+            (yStartToEnd === noAxisMovement)) {
+            this.firstMovement = false;
+            return true;
+        }
+        else if ((!this.isWhite()) && (xStartToEnd === (amountMovement + Number(this.firstMovement)))
+            && (yStartToEnd === noAxisMovement)) {
+            this.firstMovement = false;
+            return true;
+        }
+        else if ((end.getPiece() !== null) && (xStartToEnd !== noAxisMovement) && (yStartToEnd !== noAxisMovement) &&
+            ((Math.abs(xStartToEnd) + Math.abs(yStartToEnd)) === 2)) {
             return true;
         }
         else {

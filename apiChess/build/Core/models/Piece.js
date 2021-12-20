@@ -24,8 +24,6 @@ class Piece {
         if (this.isWhite() == ((_a = end.getPiece()) === null || _a === void 0 ? void 0 : _a.isWhite())) {
             return false;
         }
-        let xStartToEnd = Math.abs(start.getX() - end.getX());
-        let yStartToEnd = Math.abs(start.getY() - end.getY());
         if (this.isValidMoveForThisPiece(board, start, end)) {
             return this.movePiece(board, start, end);
         }
