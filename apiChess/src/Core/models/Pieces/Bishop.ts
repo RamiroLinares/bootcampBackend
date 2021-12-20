@@ -1,6 +1,7 @@
 import { Piece } from "../Piece";
+import { IPiece } from '../IPiece';
 
-export class Bishop extends Piece {
+export class Bishop extends Piece implements IPiece {
     constructor(white: boolean) {
         super(white);
     }

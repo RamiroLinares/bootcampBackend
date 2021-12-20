@@ -6,8 +6,9 @@ import { Rook } from './Pieces/Rook';
 import { Knight } from './Pieces/Knight';
 import { Pawn } from './Pieces/Pawn';
 import { ISquare } from './ISquare';
+import { IBoard } from './IBoard';
 
-export class Board {
+export class Board implements IBoard{
     squares: ISquare[][];
     
     constructor() {
@@ -18,7 +19,7 @@ export class Board {
             this.resetBoard();
     }
 
-    getBox(x: number, y: number) {
+    getBox(x: number, y: number):any {
         if (x < 0 || x > 7 || y < 0 || y > 7) {
             throw console.error("out of Board");
         }

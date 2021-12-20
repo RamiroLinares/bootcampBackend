@@ -1,7 +1,7 @@
-import { Piece } from "./Piece";
+import { IPiece } from "./IPiece";
 export interface ISquare {
-    getPiece(): Piece;
-    setPiece(p: Piece): void;
+    getPiece(): IPiece;
+    setPiece(p: IPiece): void;
     getX(): number;
     setX(x: number): void;
     getY(): number;
