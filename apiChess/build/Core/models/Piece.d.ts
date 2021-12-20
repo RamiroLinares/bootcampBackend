@@ -1,5 +1,6 @@
 import { ISquare } from "./ISquare";
-export declare abstract class Piece {
+import { IPiece } from './IPiece';
+export declare abstract class Piece implements IPiece {
     protected killed: boolean;
     protected white: boolean;
     constructor(white: boolean);

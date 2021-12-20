@@ -1,21 +1,21 @@
-import { Piece } from "./Piece";
+import { IPiece } from "./IPiece";
 import { ISquare } from './ISquare';
 
 export class Square implements ISquare {
-    private piece: Piece;
+    private piece: IPiece;
     private x: number;
     private y: number;
 
-    constructor(x: number, y: number, piece: Piece) {
+    constructor(x: number, y: number, piece: IPiece) {
         this.x=x;
         this.y=y;
         this.piece=piece;
     }
-    getPiece(): Piece {
+    getPiece(): IPiece {
         return this.piece;
     }
 
-    setPiece(p: Piece) {
+    setPiece(p: IPiece) {
         this.piece = p;
     }
 

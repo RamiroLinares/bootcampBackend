@@ -1,7 +1,8 @@
 import { ISquare } from "./ISquare";
+import { IPiece } from './IPiece';
 
 
-export abstract class Piece {
+export abstract class Piece implements IPiece{
 
     protected killed: boolean = false;
     protected white: boolean = false;
@@ -26,7 +27,7 @@ export abstract class Piece {
         this.killed = killed;
     }
 
-    canMove(start: ISquare, end: ISquare) {
+    canMove(start: ISquare, end: ISquare):boolean {
 
         if (this.isWhite()== end.getPiece()?.isWhite()) {
             return false;
@@ -39,7 +40,7 @@ export abstract class Piece {
         }else{
             return false;}
     };
-    movePiece(start: ISquare, end: ISquare){
+    movePiece(start: ISquare, end: ISquare):boolean{
         end.setPiece(start.getPiece());
         start.setPiece(null);
         return true;
