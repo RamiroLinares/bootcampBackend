@@ -22,4 +22,5 @@ for (let i = 0; i <= 7; i++) {
         console.log(color);
     }
 }
+console.log(board.squares[1][1].getPiece().canMove(board.squares[1][1], board.squares[2][1]));
 //# sourceMappingURL=index.js.map

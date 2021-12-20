@@ -20,11 +20,13 @@ class Piece {
         this.killed = killed;
     }
     canMove(start, end) {
-        if (end.getPiece().isWhite() == this.isWhite()) {
+        var _a;
+        if (this.isWhite() == ((_a = end.getPiece()) === null || _a === void 0 ? void 0 : _a.isWhite())) {
             return false;
         }
         let xStartToEnd = Math.abs(start.getX() - end.getX());
         let yStartToEnd = Math.abs(start.getY() - end.getY());
+        console.log(xStartToEnd, yStartToEnd);
         return this.isValidMoveForThisPiece(xStartToEnd, yStartToEnd);
     }
     ;

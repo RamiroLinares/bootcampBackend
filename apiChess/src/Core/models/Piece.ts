@@ -27,7 +27,8 @@ export abstract class Piece {
     }
 
     canMove(start: Square, end: Square) {
-        if (end.getPiece().isWhite() == this.isWhite()) {
+
+        if (this.isWhite()== end.getPiece()?.isWhite()) {
             return false;
         }
         let xStartToEnd = Math.abs(start.getX() - end.getX());
