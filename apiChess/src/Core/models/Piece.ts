@@ -34,9 +34,15 @@ export abstract class Piece {
         let xStartToEnd = Math.abs(start.getX() - end.getX());
         let yStartToEnd = Math.abs(start.getY() - end.getY());
 
-        return this.isValidMoveForThisPiece(xStartToEnd,yStartToEnd);
+        if(this.isValidMoveForThisPiece(xStartToEnd,yStartToEnd)){
+            return this.movePiece(start,end);
+        }else{
+            return false;}
     };
-    
-    isValidMoveForThisPiece(xStartToEnd:number,yStartToEnd:number){
+    movePiece(start: Square, end: Square){
+        end.setPiece(start.getPiece());
+        start.setPiece(null);
+        return true;
     }
+    abstract isValidMoveForThisPiece(xStartToEnd:number,yStartToEnd:number):boolean;
 }

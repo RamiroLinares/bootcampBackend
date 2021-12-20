@@ -26,11 +26,18 @@ class Piece {
         }
         let xStartToEnd = Math.abs(start.getX() - end.getX());
         let yStartToEnd = Math.abs(start.getY() - end.getY());
-        console.log(xStartToEnd, yStartToEnd);
-        return this.isValidMoveForThisPiece(xStartToEnd, yStartToEnd);
+        if (this.isValidMoveForThisPiece(xStartToEnd, yStartToEnd)) {
+            return this.movePiece(start, end);
+        }
+        else {
+            return false;
+        }
     }
     ;
-    isValidMoveForThisPiece(xStartToEnd, yStartToEnd) {
+    movePiece(start, end) {
+        end.setPiece(start.getPiece());
+        start.setPiece(null);
+        return true;
     }
 }
 exports.Piece = Piece;

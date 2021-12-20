@@ -7,6 +7,7 @@ export declare abstract class Piece {
     setWhite(white: boolean): void;
     isKilled(): boolean;
     setKilled(killed: boolean): void;
-    canMove(start: Square, end: Square): false | void;
-    isValidMoveForThisPiece(xStartToEnd: number, yStartToEnd: number): void;
+    canMove(start: Square, end: Square): boolean;
+    movePiece(start: Square, end: Square): boolean;
+    abstract isValidMoveForThisPiece(xStartToEnd: number, yStartToEnd: number): boolean;
 }
