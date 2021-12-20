@@ -33,7 +33,7 @@ export class Board {
         for (let i = 0; i <= 7; i++) {
         this.squares[1][i] = new Square(1, i, new Pawn(true));
         }
-        
+        //this.squares[0][3].getPiece().canMove(this.squares[0][1],this.squares[0][2])
         // initialize black pieces
         this.squares[7][0] = new Square(7, 0, new Rook(false));
         this.squares[7][1] = new Square(7, 1, new Knight(false));

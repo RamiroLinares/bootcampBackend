@@ -7,12 +7,12 @@ export async function run(BookModel:any): Promise<void> {
   await connect('mongodb://localhost:27017/books');
 
   const doc = new BookModel({
-    author:'adsa',
-    title:'elPEpe',
+    author:'un autor',
+    title:'Un titulo',
     //date: Date.now,
     year:2021
   });
-  await doc.save();
+  //await doc.save();
   console.log(doc);
   return doc.author; 
 }

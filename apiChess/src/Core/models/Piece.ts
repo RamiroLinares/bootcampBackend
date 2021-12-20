@@ -26,6 +26,15 @@ export abstract class Piece {
         this.killed = killed;
     }
 
-    canMove(board: Board, start: Square, end: Square) {//return boolean
+    canMove(start: Square, end: Square) {
+        if (end.getPiece().isWhite() == this.isWhite()) {
+            return false;
+        }
+        let x = Math.abs(start.getX() - end.getX());
+        let y = Math.abs(start.getY() - end.getY());
+
+        return this.isValidMoveForThisPiece(x,y);
     };
+    isValidMoveForThisPiece(x:number,y:number){
+    }
 }

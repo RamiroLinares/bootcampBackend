@@ -2,10 +2,10 @@ import { Piece } from "./Piece";
 
 export class Square {
     private piece: Piece;
-    private x: Number;
-    private y: Number;
+    private x: number;
+    private y: number;
 
-    constructor(x: Number, y: Number, piece: Piece) {
+    constructor(x: number, y: number, piece: Piece) {
     }
     getPiece(): Piece {
         return this.piece;
@@ -15,19 +15,19 @@ export class Square {
         this.piece = p;
     }
 
-    getX(): Number {
+    getX(): number {
         return this.x;
     }
 
-    setX(x: Number) {
+    setX(x: number) {
         this.x = x;
     }
 
-    getY(): Number {
+    getY(): number {
         return this.y;
     }
 
-    setY(y: Number) {
+    setY(y: number) {
         this.y = y;
     }
 }
