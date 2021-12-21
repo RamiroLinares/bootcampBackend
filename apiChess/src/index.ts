@@ -9,7 +9,7 @@ import { Player } from './Core/models/Player';
 const app = express()
 const port = 3000;
 let board = new Board()
-let player= new Player();
+let player = new Player();
 function isLetter(letter: string) {
     return (letter.toUpperCase() != letter.toLowerCase());
 }
@@ -28,17 +28,12 @@ app.get('/saveMatch', async (req, res) => {
 
 app.get('/loadMatch', async (req, res) => {
     const ChessModel = model<any>('ChessBoard', ChessSchemaBoard);
-    console.log(board.squares);
-    const boardAux=await loadMatch(ChessModel, board)//.catch(err => console.log(err));
-    console.log(boardAux);
-    /* console.log(boardAux[0].chessBoard); */
-    board.squares=boardAux as Array<Array<Square>>;
-    console.log(board.squares);
+    const boardAux = await loadMatch(ChessModel, board)
+    board.squares = boardAux as Array<Array<Square>>;
     res.send("last match loaded")
 });
 
 app.get('/game/:movement', async (req, res) => {
-
     const movement = req.params.movement;
     const movements = [];
     for (let i = 0; i < movement.length; i++) {
@@ -57,20 +52,20 @@ app.get('/game/:movement', async (req, res) => {
     const initBoardSquare = board.squares[posInitialNumber][posInitialLetter];
     const endBoardSquare = board.squares[posEndNumber][posEndLetter];
 
-    if(initBoardSquare.getPiece()?.isWhite()===player.isWhiteTurn()){
-    if (initBoardSquare.getPiece()?.canMove(board,initBoardSquare, endBoardSquare)) {
-        res.send("movement is " + req.params.movement + " is valid");
-        player.togglePlayer();
+    if (initBoardSquare.getPiece()?.isWhite() === player.isWhiteTurn()) {
+        if (initBoardSquare.getPiece()?.canMove(board, initBoardSquare, endBoardSquare)) {
+            res.send("movement is " + req.params.movement + " is valid");
+            player.togglePlayer();
 
-        const ChessModel = model<any>('Chess', ChessSchemaHistory);
-        await saveMovement(ChessModel, movement).catch(err => console.log(err));
+            const ChessModel = model<any>('Chess', ChessSchemaHistory);
+            await saveMovement(ChessModel, movement).catch(err => console.log(err));
 
+        } else {
+            res.send("movement is " + req.params.movement + " is NOT valid");
+        }
     } else {
-        res.send("movement is " + req.params.movement + " is NOT valid");
+        res.send("movement " + req.params.movement + " is NOT the correct color piece turn");
     }
-}else{
-    res.send("movement " + req.params.movement + " is NOT the correct color piece turn");
-}
 });
 app.listen(port, () => {
     console.log(`Server is listening on ${port}`)
