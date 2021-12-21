@@ -5,8 +5,8 @@ import { Pawn } from '../../Core/models/Pieces/Pawn';
 describe('Knight', () => {
     it('Knight Initializing', () => {
         const board = new Board();
-        const squareKnight = new Square(0, 0, new Knight(true));
-        expect(board.squares[0][0]).toEqual(squareKnight);
+        const squareKnight = new Square(0, 1, new Knight(true));
+        expect(board.squares[0][1]).toEqual(squareKnight);
     });
     it('Is White Knight moving correctly in up Right?', () => {
         const board = new Board();

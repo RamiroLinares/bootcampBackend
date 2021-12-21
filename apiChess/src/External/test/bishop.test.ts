@@ -5,8 +5,8 @@ import { Pawn } from '../../Core/models/Pieces/Pawn';
 describe('Bishop', () => {
     it('Bishop Initializing', () => {
         const board = new Board();
-        const squareBishop = new Square(0, 0, new Bishop(true));
-        expect(board.squares[0][0]).toEqual(squareBishop);
+        const squareBishop = new Square(0, 2, new Bishop(true));
+        expect(board.squares[0][2]).toEqual(squareBishop);
     });
     it('Is White Bishop moving correctly in +X +Y axis?', () => {
         const board = new Board();
