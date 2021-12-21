@@ -7,17 +7,18 @@ export class Rook extends Piece {
         super(white);
     }
     isRookNotCollisioning(board: IBoard, start: ISquare, end: ISquare): boolean {
-        let colission = true;
         for (let i = start.getX(); i <= end.getX(); i++) {
             for (let j = start.getY(); j <= end.getY(); j++) {
-                if (board.squares[i][j].getPiece() !== null) {
-                    colission = false;
+                if ((i != start.getX() && j != start.getY())
+                    && (board.squares[i][j].getPiece() !== null)) {
+                    console.log(board.squares[i][j].getPiece().constructor.name)
+                    return false;
                 } else if (end.getPiece()?.isWhite() === !this.white) {
-                    colission = true;
+                    return true;
                 }
             }
         }
-        return colission;
+        return true;;
     }
 
     isValidMoveForThisPiece(board: IBoard, start: ISquare, end: ISquare) {

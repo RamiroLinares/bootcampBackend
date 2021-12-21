@@ -1,1 +1,0 @@
-{"version":3,"file":"ChessSchema.js","sourceRoot":"","sources":["../../../../src/External/Infrastructure/dataAccess/ChessSchema.ts"],"names":[],"mappings":";;;AAAA,uCAAkC;AAIrB,QAAA,kBAAkB,GAAE,IAAI,iBAAM,CAAM;IAC7C,YAAY,EAAC,EAAC,IAAI,EAAE,MAAM,EAAC;CAC9B,CAAC,CAAA;AAEW,QAAA,gBAAgB,GAAE,IAAI,iBAAM,CAAM;IAC3C,UAAU,EAAC,EAAC,IAAI,EAAE,MAAM,EAAC;CAC5B,CAAC,CAAA"}
