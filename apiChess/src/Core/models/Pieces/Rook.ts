@@ -6,18 +6,27 @@ export class Rook extends Piece {
     constructor(white: boolean) {
         super(white);
     }
-    isRookNotCollisioning(board: IBoard, start: ISquare, end: ISquare): boolean {
-        for (let i = start.getX(); i <= end.getX(); i++) {
+    isRookNotCollisioning(board: IBoard, start: ISquare, end: ISquare,xStartToEnd:number,yStartToEnd:number): boolean {
+        if(xStartToEnd===0){
             for (let j = start.getY(); j <= end.getY(); j++) {
-                if ((i != start.getX() && j != start.getY())
-                    && (board.squares[i][j].getPiece() !== null)) {
-                    console.log(board.squares[i][j].getPiece().constructor.name)
+                if ((j != start.getY())
+                    && (board.squares[start.getX()][j].getPiece() !== null)) {
+                    console.log(board.squares[start.getX()][j].getPiece().constructor.name)
                     return false;
                 } else if (end.getPiece()?.isWhite() === !this.white) {
                     return true;
                 }
             }
-        }
+        }else if(yStartToEnd===0){
+            for (let i = start.getX(); i <= end.getX(); i++) {
+                if ((i != start.getX())
+                    && (board.squares[i][start.getY()].getPiece() !== null)) {
+                    console.log(board.squares[i][start.getY()].getPiece().constructor.name)
+                    return false;
+                } else if (end.getPiece()?.isWhite() === !this.white) {
+                    return true;
+                }
+            }}
         return true;;
     }
 
@@ -26,7 +35,7 @@ export class Rook extends Piece {
         let yStartToEnd = Math.abs(start.getY() - end.getY());
 
         if ((xStartToEnd == 0 && yStartToEnd != 0) || (xStartToEnd != 0 && yStartToEnd == 0)) {
-            return this.isRookNotCollisioning(board, start, end);
+            return this.isRookNotCollisioning(board, start, end,xStartToEnd,yStartToEnd);
         } else {
             return false;
         }

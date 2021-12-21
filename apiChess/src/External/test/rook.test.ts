@@ -84,6 +84,20 @@ describe('Rook', () => {
         squareRook.getPiece().canMove(board, start, end)
         expect(end.getPiece().constructor.name).toEqual('Pawn');
     });
+    it('Can Rook Jump a Piece ?', () => {
+        const board = new Board();
+        board.emptyBoard()
+
+        const squareRook = new Square(0, 0, new Rook(true));
+        const squarePawn= new Square(0, 1, new Pawn(true))
+        board.squares[0][0] = squareRook;
+        board.squares[0][1]=squarePawn;
+        const start = squareRook;
+        const end = board.squares[0][2];
+
+        squareRook.getPiece().canMove(board, start, end)
+        expect(end.getPiece().constructor.name).toEqual(null);
+    });
     
 
 });
