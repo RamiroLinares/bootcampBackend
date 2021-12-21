@@ -32,8 +32,8 @@ export class Rook extends Piece {
     }
 
     isValidMoveForThisPiece(board: IBoard, start: ISquare, end: ISquare) {
-        let xStartToEnd = Math.abs(start.getX() - end.getX());
-        let yStartToEnd = Math.abs(start.getY() - end.getY());
+        const xStartToEnd = Math.abs(start.getX() - end.getX());
+        const yStartToEnd = Math.abs(start.getY() - end.getY());
         const axisMovement: number = 0;
         if ((xStartToEnd === axisMovement && yStartToEnd !== axisMovement)
             || (xStartToEnd !== axisMovement && yStartToEnd === axisMovement)) {

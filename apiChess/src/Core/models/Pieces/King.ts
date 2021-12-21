@@ -8,8 +8,8 @@ export class King extends Piece {
     }
 
     isValidMoveForThisPiece(board: IBoard, start: ISquare, end: ISquare) {
-        let xStartToEnd = Math.abs(start.getX() - end.getX());
-        let yStartToEnd = Math.abs(start.getY() - end.getY());
+        const xStartToEnd = Math.abs(start.getX() - end.getX());
+        const yStartToEnd = Math.abs(start.getY() - end.getY());
         const axisMovement: number = 0;
         const axisMovementTotal: number = 1;
         const crossAxisMovement: number = 2;

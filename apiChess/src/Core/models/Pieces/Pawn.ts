@@ -10,8 +10,8 @@ export class Pawn extends Piece {
     }
 
     isValidMoveForThisPiece(board: IBoard, start: ISquare, end: ISquare) {
-        let xStartToEnd: number = (start.getX() - end.getX());
-        let yStartToEnd: number = (start.getY() - end.getY());
+        const xStartToEnd: number = (start.getX() - end.getX());
+        const yStartToEnd: number = (start.getY() - end.getY());
         const amountMovement: number = 1;
         const noAxisMovement: number = 0;
         if ((this.isWhite())

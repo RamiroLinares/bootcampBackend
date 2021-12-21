@@ -18,8 +18,8 @@ export class Bishop extends Piece {
         return true;
     }
     isValidMoveForThisPiece(board: IBoard, start: ISquare, end: ISquare) {
-        let xStartToEnd = Math.abs(start.getX() - end.getX());
-        let yStartToEnd = Math.abs(start.getY() - end.getY());
+        const xStartToEnd = Math.abs(start.getX() - end.getX());
+        const yStartToEnd = Math.abs(start.getY() - end.getY());
 
         if (xStartToEnd === yStartToEnd) {
             return this.isBishopNotCollisioning(board, start, end);
