@@ -12,12 +12,14 @@ class Pawn extends Piece_1.Piece {
         let yStartToEnd = (start.getY() - end.getY());
         const amountMovement = 1;
         const noAxisMovement = 0;
-        if ((this.isWhite()) && (xStartToEnd === (-amountMovement - Number(this.firstMovement))) &&
-            (yStartToEnd === noAxisMovement)) {
+        if ((this.isWhite())
+            && ((xStartToEnd === (-amountMovement)) || (xStartToEnd === (-amountMovement - Number(this.firstMovement))))
+            && (yStartToEnd === noAxisMovement)) {
             this.firstMovement = false;
             return true;
         }
-        else if ((!this.isWhite()) && (xStartToEnd === (amountMovement + Number(this.firstMovement)))
+        else if ((!this.isWhite())
+            && ((xStartToEnd === (amountMovement)) || (xStartToEnd === (amountMovement + Number(this.firstMovement))))
             && (yStartToEnd === noAxisMovement)) {
             this.firstMovement = false;
             return true;

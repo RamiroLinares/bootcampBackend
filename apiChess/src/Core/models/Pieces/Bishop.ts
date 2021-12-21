@@ -6,24 +6,24 @@ export class Bishop extends Piece {
         super(white);
     }
     isBishopNotCollisioning(board: IBoard, start: ISquare, end: ISquare): boolean {
-        let colission = true;
-        for (let i = start.getX(); i <= end.getX(); i++) {
-            for (let j = start.getY(); j <= end.getY(); j++) {
-                if (board.squares[i][j].getPiece() !== null) {
-                    colission = false;
-                } else if (end.getPiece()?.isWhite() === !this.white) {
-                    colission = true;
-                }
+        const dirX:number = end.getX() > start.getX() ? 1 : -1;
+        const dirY:number = end.getY() > start.getY() ? 1 : -1;
+        for (let i = 1; i <= Math.abs(end.getX() - start.getX()) - 1; ++i) {
+            if (board.squares[start.getX() + i * dirX][start.getY() + i * dirY].getPiece() !== null){
+                return false;
+            }else if (end.getPiece()?.isWhite() === !this.white) {
+                return true;
             }
         }
-        return colission;
+        return true;
     }
-    isValidMoveForThisPiece(board:IBoard,start: ISquare, end: ISquare) {
+    isValidMoveForThisPiece(board: IBoard, start: ISquare, end: ISquare) {
         let xStartToEnd = Math.abs(start.getX() - end.getX());
         let yStartToEnd = Math.abs(start.getY() - end.getY());
-        if(xStartToEnd===yStartToEnd){
-            return this.isBishopNotCollisioning(board,start,end);
-        }else{
+        
+        if (xStartToEnd === yStartToEnd) {
+            return this.isBishopNotCollisioning(board, start, end);
+        } else {
             return false;
         }
     }
