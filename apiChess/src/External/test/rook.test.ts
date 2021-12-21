@@ -96,7 +96,7 @@ describe('Rook', () => {
         const end = board.squares[0][2];
 
         squareRook.getPiece().canMove(board, start, end)
-        expect(end.getPiece().constructor.name).toEqual(null);
+        expect(end.getPiece()).toEqual(null);
     });
     
 
