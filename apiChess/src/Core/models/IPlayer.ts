@@ -1,4 +1,4 @@
-export interface Iplayer{
-    togglePlayer():void;
-    isWhiteTurn():boolean;
+export interface Iplayer {
+    togglePlayer(): void;
+    isWhiteTurn(): boolean;
 }

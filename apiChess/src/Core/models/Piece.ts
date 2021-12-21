@@ -2,12 +2,12 @@ import { ISquare } from "./ISquare";
 import { IPiece } from './IPiece';
 import { IBoard } from "./IBoard";
 
-export abstract class Piece implements IPiece{
+export abstract class Piece implements IPiece {
 
     protected killed: boolean = false;
     protected white: boolean = false;
 
-    constructor(white:boolean) {
+    constructor(white: boolean) {
         this.setWhite(white);
     }
 
@@ -27,21 +27,22 @@ export abstract class Piece implements IPiece{
         this.killed = killed;
     }
 
-    canMove(board:IBoard, start: ISquare, end: ISquare):boolean {
+    canMove(board: IBoard, start: ISquare, end: ISquare): boolean {
 
-        if (this.isWhite()=== end.getPiece()?.isWhite()) {
+        if (this.isWhite() === end.getPiece()?.isWhite()) {
             return false;
         }
-        
-        if(this.isValidMoveForThisPiece(board, start, end)){
-            return this.movePiece(board,start,end);
-        }else{
-            return false;}
+
+        if (this.isValidMoveForThisPiece(board, start, end)) {
+            return this.movePiece(board, start, end);
+        } else {
+            return false;
+        }
     };
-    movePiece(board:IBoard, start: ISquare, end: ISquare):boolean{
-        if(end.getPiece()!==null){
+    movePiece(board: IBoard, start: ISquare, end: ISquare): boolean {
+        if (end.getPiece() !== null) {
             end.getPiece()?.setKilled(true);
-            if(end.getPiece().constructor.name==='King'){
+            if (end.getPiece().constructor.name === 'King') {
                 console.log("CHECK MATE! END OF MATCH");
                 process.exit(1);
             }
@@ -50,5 +51,5 @@ export abstract class Piece implements IPiece{
         start.setPiece(null);
         return true;
     }
-    abstract isValidMoveForThisPiece(board:IBoard,start: ISquare, end: ISquare):boolean;
+    abstract isValidMoveForThisPiece(board: IBoard, start: ISquare, end: ISquare): boolean;
 }

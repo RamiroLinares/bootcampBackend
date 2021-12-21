@@ -28,12 +28,8 @@ export async function saveMatch(ChessModel: any, chessBoard: IBoard): Promise<vo
 
 export async function loadMatch(ChessModel: any, chessBoard: IBoard): Promise<ISquare[][]> {
   await connect('mongodb://localhost:27017/chess');
-  
-/*   const doc = await (ChessModel.find().sort({ _id: -1 }).limit(1).then((products:any) => {
-    console.log(products)
-}))
-  disconnect(); */
-  const doc=await (ChessModel.find().sort({ _id: -1 }).limit(1));
-  const doc2=doc[0].chessBoard
-  return doc2;
+
+  const doc = await (ChessModel.find().sort({ _id: -1 }).limit(1));
+  const matchToLoad = doc[0].chessBoard
+  return matchToLoad;
 }

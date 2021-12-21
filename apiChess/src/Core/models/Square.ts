@@ -7,9 +7,9 @@ export class Square implements ISquare {
     private y: number;
 
     constructor(x: number, y: number, piece: IPiece) {
-        this.x=x;
-        this.y=y;
-        this.piece=piece;
+        this.x = x;
+        this.y = y;
+        this.piece = piece;
     }
     getPiece(): IPiece {
         return this.piece;
