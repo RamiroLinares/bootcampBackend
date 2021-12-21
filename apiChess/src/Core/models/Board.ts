@@ -10,24 +10,27 @@ import { IBoard } from './IBoard';
 
 export class Board implements IBoard{
     squares: ISquare[][];
+    private minBoardSpace:number=0;
+    private maxBoardSpace:number=7;
     
     constructor() {
         this.squares=[]
         
-        for(var i: number = 0; i <= 7; i++) {
+        for(var i: number = this.minBoardSpace; i <= this.maxBoardSpace; i++) {
             this.squares[i] = [];}
             this.resetBoard();
     }
 
     getBox(x: number, y: number):any {
-        if (x < 0 || x > 7 || y < 0 || y > 7) {
+        if (x < this.minBoardSpace || x > this.maxBoardSpace 
+            || y < this.minBoardSpace || y > this.maxBoardSpace) {
             throw console.error("out of Board");
         }
         return this.squares[x][y];
     }
     emptyBoard(){
-        for (let i = 0; i < 8; i++) {
-            for (let j = 0; j < 8; j++) {
+        for (let i = this.minBoardSpace; i <= this.maxBoardSpace; i++) {
+            for (let j = this.minBoardSpace; j <= this.maxBoardSpace; j++) {
                 this.squares[i][j] = new Square(i, j, null);
             }
         } 
@@ -42,7 +45,7 @@ export class Board implements IBoard{
         this.squares[0][5] = new Square(0, 5, new Bishop(true));
         this.squares[0][6] = new Square(0, 6, new Knight(true));
         this.squares[0][7] = new Square(0, 7, new Rook(true));
-        for (let i = 0; i <= 7; i++) {
+        for (let i = this.minBoardSpace; i <= this.maxBoardSpace; i++) {
         this.squares[1][i] = new Square(1, i, new Pawn(true));
         }
         //this.squares[0][3].getPiece().canMove(this.squares[0][1],this.squares[0][2])

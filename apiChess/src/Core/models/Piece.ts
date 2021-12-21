@@ -29,7 +29,7 @@ export abstract class Piece implements IPiece{
 
     canMove(board:IBoard, start: ISquare, end: ISquare):boolean {
 
-        if (this.isWhite()== end.getPiece()?.isWhite()) {
+        if (this.isWhite()=== end.getPiece()?.isWhite()) {
             return false;
         }
         
@@ -39,7 +39,7 @@ export abstract class Piece implements IPiece{
             return false;}
     };
     movePiece(board:IBoard, start: ISquare, end: ISquare):boolean{
-        if(end.getPiece()!=null){
+        if(end.getPiece()!==null){
             end.getPiece()?.setKilled(true);
             if(end.getPiece().constructor.name==='King'){
                 console.log("CHECK MATE! END OF MATCH");
