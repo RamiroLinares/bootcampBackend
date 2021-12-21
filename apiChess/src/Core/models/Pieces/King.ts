@@ -10,10 +10,18 @@ export class King extends Piece {
     isValidMoveForThisPiece(board: IBoard, start: ISquare, end: ISquare) {
         let xStartToEnd = Math.abs(start.getX() - end.getX());
         let yStartToEnd = Math.abs(start.getY() - end.getY());
-            if ((xStartToEnd + yStartToEnd == 1)||(xStartToEnd + yStartToEnd == 2)) { //can move more than 1 see
+        if ((xStartToEnd == 0 && yStartToEnd != 0) || (xStartToEnd != 0 && yStartToEnd == 0)) {
+            if ((xStartToEnd + yStartToEnd == 1)) { //can move more than 1 see
                 return true;
             } else {
                 return false;
             }
+        }else{
+            if ((xStartToEnd + yStartToEnd == 2)) { //can move more than 1 see
+                return true;
+            } else {
+                return false;
+            }
+        }    
         }
 }

@@ -84,5 +84,20 @@ describe('Pawn', () => {
         squarePawn.getPiece().canMove(board, start, end)
         expect(end.getPiece().constructor.name).toEqual('Rook');
     });
-    
+    it('Can Pawn move two square at fist and then only one?', () => {
+    const board = new Board();
+        board.emptyBoard()
+
+        const squarePawn = new Square(1, 1, new Pawn(true));
+        board.squares[1][1] = squarePawn;
+        const start = squarePawn;
+        const end = board.squares[3][1];
+
+        squarePawn.getPiece().canMove(board, start, end)
+        expect(end.getPiece().constructor.name).toEqual('Pawn');
+        const end2= board.squares[5][1];
+        end.getPiece().canMove(board, end, end2)
+        expect(end2.getPiece()).toEqual(null);
+        
+    });
 });

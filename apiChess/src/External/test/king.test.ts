@@ -133,4 +133,16 @@ describe('King', () => {
         squareKing.getPiece().canMove(board, start, end)
         expect(end.getPiece().constructor.name).toEqual('King');
     });
+    it('Can King only move one straightforward?', () => {
+        const board = new Board();
+        board.emptyBoard()
+
+        const squareKing = new Square(3, 3, new King(true));
+        board.squares[3][3] = squareKing;
+        const start = squareKing;
+        const end = board.squares[3][5];
+
+        squareKing.getPiece().canMove(board, start, end)
+        expect(end.getPiece()).toEqual(null);
+    });
 });
