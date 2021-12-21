@@ -25,7 +25,13 @@ export class Board implements IBoard{
         }
         return this.squares[x][y];
     }
-
+    emptyBoard(){
+        for (let i = 0; i < 8; i++) {
+            for (let j = 0; j < 8; j++) {
+                this.squares[i][j] = new Square(i, j, null);
+            }
+        } 
+    }
     resetBoard() {
         // initialize white pieces
         this.squares[0][0] = new Square(0, 0, new Rook(true));
