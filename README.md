@@ -7,6 +7,7 @@ Made in Typescript with express and Mongoose
 
 
 ![alt text](https://image.shutterstock.com/image-vector/starting-chess-position-on-chessboard-600w-92438269.jpg)
+
 Some future features:
 
 -Check for King
