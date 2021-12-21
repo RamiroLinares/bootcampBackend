@@ -99,5 +99,4 @@ describe('Rook', () => {
         expect(end.getPiece()).toEqual(null);
     });
     
-
 });
