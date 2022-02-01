@@ -3,8 +3,8 @@ import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
 @Entity()
 export class User {
 
-    @PrimaryGeneratedColumn()
-    id: number;
+    @PrimaryGeneratedColumn("uuid")
+    id: string;
 
     @Column()
     firstName: string;
@@ -20,4 +20,7 @@ export class User {
 
     @Column()
     email: string;
+    @Column({default:0})
+    assistance: number;
+    
 }
