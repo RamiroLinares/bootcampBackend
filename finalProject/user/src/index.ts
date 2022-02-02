@@ -4,27 +4,41 @@ import {User} from "./entity/User";
 import * as express from "express";
 import {Request, Response} from "express";
 import { UserRepository } from './repository/user.repository';
-import { v4 as uuidv4 } from 'uuid';
+import { Repository } from "./repository/generic.repository";
 
 createConnection().then(connection => {
-    const userRepository = connection.getRepository(User);
     const port = 3000
     const app = express();
     app.use(express.json());
-
+    const userRepository= new UserRepository(connection.getRepository(User));
     app.get("/users", async function(req: Request, res: Response) {
-        let users:any;
-        users = await userRepository.find();
-        if(req.params.name!==null){
-            users = await userRepository.find().then(users=>{
-                users.filter(user=> user.firstName===req.params.name)
-            });
-        }else if(req.params.nickname!==null){
-            users = await userRepository.find().then(users=>{
-                users.filter(user=> user.nickName===req.params.nickname)
-            });
+        /* const filters = req.query;
+        const users = await userRepository.findAll()
+        const filteredUsers = users.filter(user => {
+          let isValid = true;
+          for (const key in filters) {
+            isValid = isValid && user[key] == filters[key];
+          }
+          return isValid;
+        }); */
+        if(!!req.query){
+            const users = await userRepository.findAll()
+            res.send(users); 
+        }else{
+        const filteredUsers= await connection.getRepository(User)
+        .createQueryBuilder("user")
+        .where("nickName like :nickName or firstName like :firstName",
+        {
+            firstName: req.query.firstName,
+            nickName: req.query.nickName
         }
-        res.json(users);
+        ).getMany()
+        if(filteredUsers.length>0){
+            res.send(filteredUsers);      
+        }else{
+            res.status(404).send("Filtered user or users Not Found")
+        }
+    }
     });
 
     app.get("/users/:id", async function(req: Request, res: Response) {
@@ -33,19 +47,19 @@ createConnection().then(connection => {
     });
 
     app.post("/users", async function(req: Request, res: Response) {
-        const results = await userRepository.save(req.body);
+        const results = await userRepository.addUser(req.body);
         return res.send(results);
     });
 
     app.put("/users/:id", async function(req: Request, res: Response) {
         const user = await userRepository.findOne(req.params.id);
-        userRepository.merge(user, req.body);
-        const results = await userRepository.save(user);
+        userRepository.connection.merge(user, req.body);
+        const results = await userRepository.addUser(user);
         return res.send(results);
     });
 
     app.delete("/users/:id", async function(req: Request, res: Response) {
-        const results = await userRepository.delete(req.params.id);
+        const results = await userRepository.deleteUser(req.params.id);
         if (results.affected===0){
             return res.status(404).send("User to delete not found")
         }else{

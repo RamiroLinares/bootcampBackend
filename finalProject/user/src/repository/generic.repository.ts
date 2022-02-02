@@ -1,9 +1,9 @@
 import { injectable, unmanaged } from 'inversify';
 import { Repository as OrmRepository } from 'typeorm';
-import { Repository } from './Irepository'
+import { IRepository } from './Irepository'
 
-@injectable()
-export abstract class IRepository<T> implements Repository<T>
+
+export abstract class Repository<T> implements IRepository<T>
 {
   private readonly repository: OrmRepository<T>;
 

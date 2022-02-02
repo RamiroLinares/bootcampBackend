@@ -1,29 +1,28 @@
-import { injectable } from 'inversify';
-import { EntityRepository, getRepository } from 'typeorm';
 import { User } from './../entity/user';
-import { IRepository } from './generic.repository';
+import { Repository } from './generic.repository';
+import { Repository as OrmRepository } from 'typeorm';
 
-@injectable()
-export class UserRepository extends IRepository<User> {
-  constructor() {
-    super(getRepository(User));
-  }
+export class UserRepository  {
+  private readonly repository: OrmRepository<any>;
+  constructor(
+    public connection:OrmRepository<any>
+  ) {}
 
   async addUser(user: User): Promise<User> {
-    const userToSave = this.getRepository().create(user);
-    const savedUser = await this.save(userToSave);
+    const userToSave = this.connection.create(user);
+    const savedUser = await this.connection.save(userToSave);
     return savedUser;
   }
 
   async deleteUser(id: string): Promise<any> {
-    const deletedUser = await this.getRepository().delete(id);
+    const deletedUser = await this.connection.delete(id);
     return deletedUser;
   }
   public async findAll(): Promise<User[]> {
-    return await this.getRepository().find();
+    return await this.connection.find();
   }
 
   public async findOne(id: string): Promise<User> {
-    return await this.getRepository().findOne(id);
+    return await this.connection.findOne(id);
   }
 }
