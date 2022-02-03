@@ -1,21 +1,23 @@
-import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, ObjectIdColumn, ObjectID} from "typeorm";
 
 @Entity()
 export class Attendance {
 
-    @PrimaryGeneratedColumn("uuid")
-    id: string;
+    @ObjectIdColumn()
+    id: ObjectID;
 
     @Column()
-    hourStart: number;
+    hourStart: string;
 
     @Column()
-    hourEnd: number;
+    hourEnd: string;
 
     @Column()
     date: Date;
 
     @Column()
     note: string;
-    
+
+    @Column("uuid")
+    userID:string;
 }

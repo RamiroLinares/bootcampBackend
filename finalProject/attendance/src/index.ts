@@ -10,42 +10,40 @@ createConnection().then(async connection => {
     const app = express();
     app.use(express.json());
     const attendanceRepository= new AttendanceRepository(connection.getRepository(Attendance));
-    app.get("/Attendances", async function(req: Request, res: Response) {
-        const filters = req.query;
-        const Attendances = await attendanceRepository.findAll()
-        const filteredAttendances = Attendances.filter(Attendance => {
-          let isValid = true;
-          for (const key in filters) {
-            isValid = isValid && Attendance[key] == filters[key];
-          }
-          return isValid;
-        });
-        if(!!filteredAttendances){
-            res.status(404).send("Filtered Attendance or Attendances Not Found")
-        }else{
-            res.send(filteredAttendances);
-        }
-        
+    app.get("/attendances", async function(req: Request, res: Response) {
+        const attendances = await attendanceRepository.findAll()
+        res.send(attendances)
     });
 
-    app.get("/Attendances/:id", async function(req: Request, res: Response) {
+    app.get("/attendances/:id", async function(req: Request, res: Response) {
         const results = await attendanceRepository.findOne(req.params.id);
         return res.send(results);
     });
+    app.get("/attendances/users/:userID", async function(req: Request, res: Response) {
+        const results = await connection.getRepository(Attendance)
+        .find({ 
+            where: { 
+               userID: {$eq: req.params.userID}, 
+            } 
+         });
 
-    app.post("/Attendances", async function(req: Request, res: Response) {
+        return res.send(results);
+    
+    });
+
+    app.post("/attendances", async function(req: Request, res: Response) {
         const results = await attendanceRepository.addAttendance(req.body);
         return res.send(results);
     });
 
-    app.put("/Attendances/:id", async function(req: Request, res: Response) {
+    app.put("/attendances/:id", async function(req: Request, res: Response) {
         const Attendance = await attendanceRepository.findOne(req.params.id);
         attendanceRepository.connection.merge(Attendance, req.body);
         const results = await attendanceRepository.addAttendance(Attendance);
         return res.send(results);
     });
 
-    app.delete("/Attendances/:id", async function(req: Request, res: Response) {
+    app.delete("/attendances/:id", async function(req: Request, res: Response) {
         const results = await attendanceRepository.deleteAttendance(req.params.id);
         if (results.affected===0){
             return res.status(404).send("Attendance to delete not found")

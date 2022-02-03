@@ -6,6 +6,7 @@ import {Request, Response} from "express";
 import { UserRepository } from './repository/user.repository';
 import { Repository } from "./repository/generic.repository";
 
+var http = require('http');
 createConnection().then(connection => {
     const port = 3000
     const app = express();
@@ -43,6 +44,7 @@ createConnection().then(connection => {
 
     app.get("/users/:id", async function(req: Request, res: Response) {
         const results = await userRepository.findOne(req.params.id);
+
         return res.send(results);
     });
 
@@ -65,6 +67,28 @@ createConnection().then(connection => {
         }else{
         return res.status(200).send("User "+req.params.id+ " deleted successfully");}
     });
+
+    app.get('/check', function(req, res) {
+        var request = http.request({
+          host: 'localhost',
+          port: 3001,
+          path: '/attendances/users/25c9e7dd-a8a9-4602-99d4-7586e59f3e05',
+          method: 'GET',
+          headers: {
+          }
+        }, function(response) {
+          var data = '';
+          response.setEncoding('utf8');
+          response.on('data', (chunk) => {
+            data += chunk;
+          });
+          response.on('end', () => {
+            res.end(data);
+          });
+        }
+        );
+        request.end();
+      });
 
     app.listen(port, () => {
         console.log(`listening on port ${port}`)
