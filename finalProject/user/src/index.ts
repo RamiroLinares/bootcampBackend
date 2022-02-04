@@ -68,11 +68,11 @@ createConnection().then(connection => {
         return res.status(200).send("User "+req.params.id+ " deleted successfully");}
     });
 
-    app.get('/check', function(req, res) {
+    app.get('/users/attendances/:id', function(req, res) {
         var request = http.request({
           host: 'localhost',
           port: 3001,
-          path: '/attendances/users/25c9e7dd-a8a9-4602-99d4-7586e59f3e05',
+          path: '/attendances/users/'+req.params.id,
           method: 'GET',
           headers: {
           }

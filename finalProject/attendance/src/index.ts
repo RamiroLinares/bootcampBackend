@@ -4,6 +4,7 @@ import {Attendance} from "./entity/Attendance";
 import * as express from "express";
 import {Request, Response} from "express";
 import { AttendanceRepository } from "./repository/attendance.repository";
+import { createSendQueue } from './rabbit/message';
 
 createConnection().then(async connection => {
     const port = 3001
@@ -33,6 +34,8 @@ createConnection().then(async connection => {
 
     app.post("/attendances", async function(req: Request, res: Response) {
         const results = await attendanceRepository.addAttendance(req.body);
+        console.log(String(results))
+        createSendQueue(String(results));
         return res.send(results);
     });
 
