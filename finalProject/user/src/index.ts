@@ -5,6 +5,7 @@ import * as express from "express";
 import {Request, Response} from "express";
 import { UserRepository } from './repository/user.repository';
 import { Repository } from "./repository/generic.repository";
+import { consumeUserQueue } from './userQueue';
 
 var http = require('http');
 createConnection().then(connection => {
@@ -44,7 +45,7 @@ createConnection().then(connection => {
 
     app.get("/users/:id", async function(req: Request, res: Response) {
         const results = await userRepository.findOne(req.params.id);
-
+        
         return res.send(results);
     });
 
@@ -91,6 +92,6 @@ createConnection().then(connection => {
       });
 
     app.listen(port, () => {
-        console.log(`listening on port ${port}`)
+        console.log(`listening on port ${port}`);
       })
 });

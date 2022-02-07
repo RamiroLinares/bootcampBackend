@@ -35,7 +35,7 @@ createConnection().then(async connection => {
     app.post("/attendances", async function(req: Request, res: Response) {
         const results = await attendanceRepository.addAttendance(req.body);
         console.log(String(results))
-        createSendQueue(String(results));
+        createSendQueue(JSON.stringify(results));
         return res.send(results);
     });
 
