@@ -1,4 +1,5 @@
 import { createSendQueueToUser } from './user';
+import { getAttendance } from './getAttendance';
 import amqp= require('amqplib/callback_api')
 
 export function consumeAttendanceQueue(){
@@ -28,9 +29,17 @@ amqp.connect({
             }
 
              channel.consume(queue, function(message){
-                console.log('Received %s', message?.content.toString());
-            messages=message?.content.toString();
-                createSendQueueToUser(messages);
+                messages=message?.content.toString();       
+                
+
+                const messagesParse=JSON.parse(messages);
+                const userID=messagesParse.userID
+                console.log('Received %s', userID );
+                const attendanceAmount=getAttendance(userID).then(()=>{
+                    const messageToSend="userID:"+userID+" attendanceAmount:"+attendanceAmount;
+                    createSendQueueToUser(String(messageToSend));
+                })
+                
             },
             {
                 noAck: true
