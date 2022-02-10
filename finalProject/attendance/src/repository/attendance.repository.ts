@@ -14,8 +14,9 @@ export class AttendanceRepository  {
   }
 
   async deleteAttendance(id: string): Promise<any> {
+    const dataDeleted= await this.connection.findOne(id);
     const deletedAttendance = await this.connection.delete(id);
-    return deletedAttendance;
+    return dataDeleted;
   }
   public async findAll(): Promise<Attendance[]> {
     return await this.connection.find();

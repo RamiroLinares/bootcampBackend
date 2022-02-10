@@ -48,6 +48,7 @@ createConnection().then(async connection => {
 
     app.delete("/attendances/:id", async function(req: Request, res: Response) {
         const results = await attendanceRepository.deleteAttendance(req.params.id);
+        createSendQueue(JSON.stringify(results));
         if (results.affected===0){
             return res.status(404).send("Attendance to delete not found")
         }else{
